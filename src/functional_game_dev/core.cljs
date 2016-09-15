@@ -18,8 +18,8 @@
 (def raw-slides
   [[:text {:value "Functional Game\nDevelopment" :halign :center}]
    [[:text {:value "Benefits" :halign :center}]
-    [:text {:value (str "Agility: reload, rewind, inspect at runtime" \newline
-                     "Pure code is more maintainable")
+    [:text {:value (str "Pure code is more maintainable" \newline
+                     "Agility: reload, rewind, inspect at runtime")
             :halign :center :size 16 :y 50}]]
    [[:text {:value "Drawbacks" :halign :center}]
     [:text {:value (str "Performance" \newline
