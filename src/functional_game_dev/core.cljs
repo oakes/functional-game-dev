@@ -65,7 +65,11 @@ render(commands);"
      [:arc {:width 60 :height 60 :start 0 :stop 3.14}]]]])
 
 (render commands)"
-           :font "Courier New" :halign :left :size 14 :y -50}]])
+           :font "Courier New" :halign :left :size 14 :y -50}]
+   [[:div {:x 450 :y -50}
+     [:text {:value "Try it out:" :halign :center}]
+     [:text {:value (str "https://github.com/oakes/play-cljs")
+             :halign :center :size 16 :y 50}]]]])
 
 (def slides
   (reduce
