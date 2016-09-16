@@ -17,13 +17,10 @@
 
 (def raw-slides
   [[:text {:value "Functional Game\nDevelopment" :halign :center}]
-   [[:text {:value "Benefits" :halign :center}]
-    [:text {:value (str "Pure code is more maintainable" \newline
-                     "Agility: reload, rewind, inspect at runtime")
-            :halign :center :size 16 :y 50}]]
-   [[:text {:value "Drawbacks" :halign :center}]
-    [:text {:value (str "Performance" \newline
-                     "Less mature libraries")
+   [[:text {:value "Agility" :halign :center}]
+    [:text {:value (str "Hot code reloading" \newline
+                     "REPL-driven development" \newline
+                     "Time travelling")
             :halign :center :size 16 :y 50}]]
    [[:text {:value "Popular libraries" :halign :center}]
     [:text {:value (str "Unity (C#)" \newline
@@ -33,7 +30,7 @@
    [[:text {:value "Use hosted languages!" :halign :center}]
     [:text {:value (str "Unity (Clojure, F#)" \newline
                      "libGDX (Clojure, Scala)" \newline
-                     "Phaser, p5.js (ClojureScript, Elm)")
+                     "Phaser, p5.js (ClojureScript, PureScript)")
             :halign :center :size 16 :y 50}]]
    [[:div {:x 200} smiley]
     [:text {:value "fill(\"yellow\");
