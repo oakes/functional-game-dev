@@ -63,6 +63,7 @@ render(commands);"
 
 (render commands)"
            :font "Courier New" :halign :left :size 14 :y -50}]
+   [:div {}]
    [[:div {:x 450 :y -50}
      [:text {:value "Try it out:" :halign :center}]
      [:text {:value (str "https://github.com/oakes/play-cljs")
