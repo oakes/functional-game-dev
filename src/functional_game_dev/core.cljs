@@ -52,7 +52,7 @@ head.add(new Arc(60, 60, 0, 3.14));
 stage.add(head);
 stage.draw();"
             :font "Courier New" :halign :left :size 14 :x -150}]]
-   [[:text {:value "Data-Driven" :halign :center :y -50}]
+   [[:text {:value "Data-Oriented" :halign :center :y -50}]
     [:text {:value "var commands =
   [\"fill\", {color: \"yellow\"},
    [\"ellipse\", {width: 100, height: 100},
