@@ -43,8 +43,8 @@ noFill();
 arc(50, 55, 60, 60, 0, 3.14);"
             :font "Courier New" :halign :left :size 14 :x -150}]]
    [[:text {:value "Object-Oriented" :halign :center :y -50}]
-    [:text {:value "var stage = new Stage();
-var head = new Ellipse(100, 100);
+    [:text {:value "Stage stage = new Stage();
+Ellipse head = new Ellipse(100, 100);
 head.setFill(\"yellow\");
 head.add(new Ellipse(-20, -10, 10, 10));
 head.add(new Ellipse(20, -10, 10, 10));
@@ -61,6 +61,7 @@ stage.draw();"
      [\"ellipse\", {x: 20, y: -10, width: 10, height: 10}]],
     [\"fill\", {},
      [\"arc\", {width: 60, height: 60, start: 0, stop: 3.14}]]]];
+
 render(commands);"
             :font "Courier New" :halign :left :size 14 :x -150}]]
    [:text {:value "(def commands
