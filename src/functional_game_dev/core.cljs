@@ -32,7 +32,8 @@
                      "libGDX (Clojure, Scala)" \newline
                      "Phaser, p5.js (ClojureScript, PureScript)")
             :halign :center :size 16 :y 50}]]
-   [[:div {:x 200} smiley]
+   [[:text {:value "Procedural" :halign :center :y -50}]
+    [:div {:x 200 :y 50} smiley]
     [:text {:value "fill(\"yellow\");
 ellipse(50, 50, 100, 100);
 fill(\"black\");
@@ -40,8 +41,19 @@ ellipse(30, 40, 10, 10);
 ellipse(70, 40, 10, 10);
 noFill();
 arc(50, 55, 60, 60, 0, 3.14);"
-            :font "Courier New" :halign :left :size 14 :x -150 :y -50}]]
-   [:text {:value "var commands =
+            :font "Courier New" :halign :left :size 14 :x -150}]]
+   [[:text {:value "Object-Oriented" :halign :center :y -50}]
+    [:text {:value "var stage = new Stage();
+var head = new Ellipse(100, 100);
+head.setFill(\"yellow\");
+head.add(new Ellipse(-20, -10, 10, 10));
+head.add(new Ellipse(20, -10, 10, 10));
+head.add(new Arc(60, 60, 0, 3.14));
+stage.add(head);
+stage.draw();"
+            :font "Courier New" :halign :left :size 14 :x -150}]]
+   [[:text {:value "Data-Driven" :halign :center :y -50}]
+    [:text {:value "var commands =
   [\"fill\", {color: \"yellow\"},
    [\"ellipse\", {width: 100, height: 100},
     [\"fill\", {color: \"black\"},
@@ -49,9 +61,8 @@ arc(50, 55, 60, 60, 0, 3.14);"
      [\"ellipse\", {x: 20, y: -10, width: 10, height: 10}]],
     [\"fill\", {},
      [\"arc\", {width: 60, height: 60, start: 0, stop: 3.14}]]]];
-
 render(commands);"
-           :font "Courier New" :halign :left :size 14 :x -150 :y -50}]
+            :font "Courier New" :halign :left :size 14 :x -150}]]
    [:text {:value "(def commands
   [:fill {:color \"yellow\"}
    [:ellipse {:width 100 :height 100}
@@ -62,8 +73,7 @@ render(commands);"
      [:arc {:width 60 :height 60 :start 0 :stop 3.14}]]]])
 
 (render commands)"
-           :font "Courier New" :halign :left :size 14 :y -50}]
-   [:div {}]
+            :font "Courier New" :halign :left :size 14 :y -50}]
    [[:div {:x 450 :y -50}
      [:text {:value "Try it out:" :halign :center}]
      [:text {:value (str "https://github.com/oakes/play-cljs")
