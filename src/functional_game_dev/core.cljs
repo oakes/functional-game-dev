@@ -17,11 +17,6 @@
 
 (def raw-slides
   [[:text {:value "Functional Game\nDevelopment" :halign :center}]
-   [[:text {:value "Agility" :halign :center}]
-    [:text {:value (str "Hot code reloading" \newline
-                     "REPL-driven development" \newline
-                     "Time travelling")
-            :halign :center :size 16 :y 50}]]
    [[:text {:value "Popular libraries" :halign :center}]
     [:text {:value (str "Unity (C#)" \newline
                      "libGDX (Java)" \newline
@@ -31,6 +26,11 @@
     [:text {:value (str "Unity (Clojure, F#)" \newline
                      "libGDX (Clojure, Scala)" \newline
                      "Phaser, p5.js (ClojureScript, PureScript)")
+            :halign :center :size 16 :y 50}]]
+   [[:text {:value "Why functional programming?" :halign :center}]
+    [:text {:value (str "Hot code reloading" \newline
+                     "REPL-driven development" \newline
+                     "Time travelling")
             :halign :center :size 16 :y 50}]]
    [[:text {:value "Procedural" :halign :center :y -50}]
     [:div {:x 200 :y 50} smiley]
