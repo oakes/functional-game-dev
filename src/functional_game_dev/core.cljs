@@ -8,7 +8,7 @@
 (defonce state (atom nil))
 (defonce paused? (atom false))
 
-(def smiley
+(defn smiley []
   [:fill {:color "yellow"}
    [:ellipse {:width 100 :height 100}
     [:fill {:color "black"}
@@ -35,7 +35,8 @@
                      "Time travelling")
             :halign :center :size 16 :y 50}]]
    [[:text {:value "Procedural" :halign :center :y -50}]
-    [:div {:x 200 :y 50} smiley]
+    [:div {:x 200 :y 50}
+     (smiley)]
     [:text {:value "fill(\"yellow\");
 ellipse(50, 50, 100, 100);
 fill(\"black\");
