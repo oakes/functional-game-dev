@@ -104,7 +104,7 @@ render(commands);"
                         [:tiled-map {:value (:map @state) :x x}]
                         [:div {:x (- (+ x 350)) :y 100}
                          slides]
-                        [:div {:x koala-x :y y :width u/koala-width :height u/koala-height}
+                        [:div {:x koala-x :y y}
                          current]]))
       (when-not @paused?
         (reset! state

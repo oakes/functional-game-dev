@@ -3,25 +3,15 @@
             [functional-game-dev.utils :as u]))
 
 (defn initial-state [game]
-  (let [image (p/load-image game u/image-url)
-        stand-right [:image {:value image :swidth u/koala-width :sheight u/koala-height}]
-        stand-left [:image {:value image :swidth u/koala-width :sheight u/koala-height :scale-x -1 :width (- u/koala-width)}]
-        jump-right [:image {:value image :swidth u/koala-width :sheight u/koala-height :sx u/koala-width}]
-        jump-left [:image {:value image :swidth u/koala-width :sheight u/koala-height :sx u/koala-width :scale-x -1 :width (- u/koala-width)}]]
-    {:current stand-right
-     :stand-right stand-right
-     :stand-left stand-left
-     :jump-right jump-right
-     :jump-left jump-left
-     ;:walk-right TODO
-     ;:walk-left TODO
-     :x-velocity 0
-     :y-velocity 0
-     :x -100
-     :y 200
-     :can-jump? false
-     :direction :right
-     :map (p/load-tiled-map game u/map-name)}))
+  {:current [:div {}]
+   :x-velocity 0
+   :y-velocity 0
+   :x -100
+   :y 200
+   :can-jump? false
+   :direction :right
+   :image (p/load-image game u/image-url)
+   :map (p/load-tiled-map game u/map-name)})
 
 (defn move
   [{:keys [x y can-jump?] :as state} game]
@@ -55,19 +45,24 @@
         {:y-velocity 0 :y-change 0 :y old-y :can-jump? (not up?)}))))
 
 (defn animate
-  [{:keys [x-velocity y-velocity
-           stand-right stand-left
-           jump-right jump-left
-           walk-right walk-left] :as state}]
+  [{:keys [x-velocity y-velocity image] :as state}]
   (let [direction (u/get-direction state)]
     (-> state
         (assoc :current
           (cond
             (not= y-velocity 0)
-            (if (= direction :right) jump-right jump-left)
+            (if (= direction :right)
+              [:image {:value image :swidth u/source-width :sheight u/source-height :sx u/source-width
+                       :width u/koala-width :height u/koala-height}]
+              [:image {:value image :swidth u/source-width :sheight u/source-height :sx u/source-width :scale-x -1
+                       :width (- u/koala-width) :height u/koala-height}])
             ;(not= x-velocity 0)
             ;(if (= direction :right) walk-right walk-left)
             :else
-            (if (= direction :right) stand-right stand-left)))
+            (if (= direction :right)
+              [:image {:value image :swidth u/source-width :sheight u/source-height
+                       :width u/koala-width :height u/koala-height}]
+              [:image {:value image :swidth u/source-width :sheight u/source-height :scale-x -1
+                       :width (- u/koala-width) :height u/koala-height}])))
         (assoc :direction direction))))
 

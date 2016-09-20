@@ -10,8 +10,10 @@
 (def ^:const gravity 0.2)
 (def ^:const image-url "koalio.png")
 (def ^:const map-name "level1")
-(def ^:const koala-width 18)
-(def ^:const koala-height 26)
+(def ^:const source-width 18)
+(def ^:const source-height 26)
+(def ^:const koala-width (* source-width 1))
+(def ^:const koala-height (* source-height 1))
 (def ^:const koala-offset (- (/ view-size 2) (/ koala-width 2)))
 
 (defn decelerate
