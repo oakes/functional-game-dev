@@ -6,6 +6,7 @@
 
 (defonce game (p/create-game u/view-size u/view-size))
 (defonce state (atom nil))
+(defonce paused? (atom false))
 
 (def smiley
   [:fill {:color "yellow"}
@@ -98,14 +99,14 @@ render(commands);"
       (let [{:keys [x y direction current]} @state
             koala-x (if (= direction :left) (- u/koala-offset) u/koala-offset)]
         (p/render game [[:stroke {}
-                         [:fill {:color (if @tt/paused? "gray" "lightblue")}
+                         [:fill {:color (if @paused? "gray" "lightblue")}
                           [:rect {:width u/view-size :height u/view-size}]]]
                         [:tiled-map {:value (:map @state) :x x}]
                         [:div {:x (- (+ x 350)) :y 100}
                          slides]
                         [:div {:x koala-x :y y :width u/koala-width :height u/koala-height}
                          current]]))
-      (when-not @tt/paused?
+      (when-not @paused?
         (reset! state
           (or (tt/rewind game 1)
               (-> @state
@@ -116,7 +117,7 @@ render(commands);"
       (case (.-type event)
         "keydown"
         (when (= (.-keyCode event) 80)
-          (swap! tt/paused? not))))))
+          (swap! paused? not))))))
 
 (doto game
   (p/stop)
