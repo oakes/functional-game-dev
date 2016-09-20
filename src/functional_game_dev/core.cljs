@@ -1,7 +1,8 @@
 (ns functional-game-dev.core
   (:require [play-cljs.core :as p]
             [functional-game-dev.state :as s]
-            [functional-game-dev.utils :as u]))
+            [functional-game-dev.utils :as u]
+            [functional-game-dev.time-travel :as tt]))
 
 (defonce game (p/create-game u/view-size u/view-size))
 (defonce state (atom nil))
@@ -97,22 +98,30 @@ render(commands);"
       (let [{:keys [x y direction current]} @state
             koala-x (if (= direction :left) (- u/koala-offset) u/koala-offset)]
         (p/render game [[:stroke {}
-                         [:fill {:color "lightblue"}
+                         [:fill {:color (if @tt/paused? "gray" "lightblue")}
                           [:rect {:width u/view-size :height u/view-size}]]]
                         [:tiled-map {:value (:map @state) :x x}]
                         [:div {:x (- (+ x 350)) :y 100}
                          slides]
                         [:div {:x koala-x :y y :width u/koala-width :height u/koala-height}
                          current]]))
-      (reset! state
-        (-> @state
-            (s/move game)
-            (s/prevent-move game)
-            (s/animate))))
-    (on-event [_ event])))
+      (when-not @tt/paused?
+        (reset! state
+          (or (tt/rewind game 1)
+              (-> @state
+                  (s/move game)
+                  (s/prevent-move game)
+                  (s/animate))))))
+    (on-event [_ event]
+      (case (.-type event)
+        "keydown"
+        (when (= (.-keyCode event) 80)
+          (swap! tt/paused? not))))))
 
 (doto game
   (p/stop)
   (p/start ["keydown"])
   (p/set-screen main-screen))
+
+(tt/start-recording state)
 
