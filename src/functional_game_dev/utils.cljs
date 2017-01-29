@@ -49,7 +49,7 @@
     :else
     direction))
 
-(defn touching-tile? [tiled-map layer-index x y width height]
+(defn touching-tile? [^js/p5.TiledMap tiled-map layer-index x y width height]
   (let [tile-size (.getTileSize tiled-map)
         start-x (int (/ x (.-x tile-size)))
         start-y (int (/ y (.-y tile-size)))

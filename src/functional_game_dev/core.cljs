@@ -2,7 +2,8 @@
   (:require [play-cljs.core :as p]
             [functional-game-dev.state :as s]
             [functional-game-dev.utils :as u]
-            [functional-game-dev.time-travel :as tt]))
+            [functional-game-dev.time-travel :as tt]
+            [goog.events :as events]))
 
 (defonce game (p/create-game u/view-size u/view-size))
 (defonce state (atom nil))
@@ -90,10 +91,15 @@ render(commands);"
     []
     (reverse raw-slides)))
 
+(defn on-key-down [^js/KeyboardEvent event]
+  (when (= (.-keyCode event) 80)
+    (swap! paused? not)))
+
 (def main-screen
   (reify p/Screen
     (on-show [_]
       (when-not @state
+        (events/listen js/window "keydown" on-key-down)
         (reset! state (s/initial-state game))))
     (on-hide [_])
     (on-render [_]
@@ -113,16 +119,10 @@ render(commands);"
               (-> @state
                   (s/move game)
                   (s/prevent-move game)
-                  (s/animate))))))
-    (on-event [_ event]
-      (case (.-type event)
-        "keydown"
-        (when (= (.-keyCode event) 80)
-          (swap! paused? not))))))
+                  (s/animate))))))))
 
 (doto game
-  (p/stop)
-  (p/start ["keydown"])
+  (p/start)
   (p/set-screen main-screen))
 
 (tt/start-recording state)
