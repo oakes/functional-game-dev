@@ -103,15 +103,14 @@ render(commands);"
         (reset! state (s/initial-state game))))
     (on-hide [_])
     (on-render [_]
-      (let [{:keys [x y direction current]} @state
-            koala-x (if (= direction :left) (- u/koala-offset) u/koala-offset)]
+      (let [{:keys [x y direction current]} @state]
         (p/render game [[:stroke {}
                          [:fill {:color (if @paused? "gray" "lightblue")}
                           [:rect {:width u/view-size :height u/view-size}]]]
                         [:tiled-map {:value (:map @state) :x x}]
                         [:div {:x (- (+ x 350)) :y 100}
                          slides]
-                        [:div {:x koala-x :y y}
+                        [:div {:x u/koala-offset :y y}
                          current]]))
       (when-not @paused?
         (reset! state
