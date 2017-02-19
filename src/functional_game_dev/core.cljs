@@ -103,7 +103,7 @@ render(commands);"
         (reset! state (s/initial-state game))))
     (on-hide [_])
     (on-render [_]
-      (let [{:keys [x y direction current]} @state]
+      (let [{:keys [x y current]} @state]
         (p/render game [[:stroke {}
                          [:fill {:color (if @paused? "gray" "lightblue")}
                           [:rect {:width u/view-size :height u/view-size}]]]
