@@ -1,6 +1,6 @@
 ## Introduction
 
-These are the interactive slides for my play-cljs talk. You can see them live [here](https://oakes.github.io/functional-game-dev/).
+These are the interactive slides for my play-cljs talk at the College of Charleston. You can see them live [here](https://oakes.github.io/functional-game-dev/).
 
 ## Licensing
 
